@@ -1,8 +1,8 @@
 package com.anamika.authsystem.service;
 
 import com.anamika.authsystem.dto.RegisterRequest;
-import com.anamika.authsystem.model.Role;
-import com.anamika.authsystem.model.User;
+import com.anamika.authsystem.entity.User;
+import com.anamika.authsystem.entity.Role;
 import com.anamika.authsystem.repository.RoleRepository;
 import com.anamika.authsystem.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
