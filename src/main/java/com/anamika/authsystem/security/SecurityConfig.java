@@ -2,24 +2,28 @@ package com.anamika.authsystem.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable()) // disable CSRF for Postman
+                // Disable default security mechanisms
+                .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable())
+
+                // Allow auth endpoints
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // allow register/login
-                        .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults()); // temporary (we’ll remove later)
+                        .requestMatchers(
+                                "/api/auth/register",
+                                "/api/auth/login")
+                        .permitAll()
+                        .anyRequest().authenticated());
 
         return http.build();
     }

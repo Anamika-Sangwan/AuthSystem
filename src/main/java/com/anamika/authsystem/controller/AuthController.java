@@ -1,8 +1,7 @@
 package com.anamika.authsystem.controller;
 
-import com.anamika.authsystem.dto.RegisterRequest;
+import com.anamika.authsystem.dto.LoginRequest;
 import com.anamika.authsystem.service.AuthService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +15,9 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
-        authService.register(request);
-        return ResponseEntity.ok("User registered successfully");
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        String token = authService.login(request);
+        return ResponseEntity.ok(token);
     }
 }
