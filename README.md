@@ -1,6 +1,7 @@
 **User Authentication & Role-Based Access System**
 A Java-based backend system that handles secure user authentication, role-based authorization, and protected REST APIs using Spring Boot and relational databases.
 “Built a Java-based backend authentication system using Spring Boot and JWT, implementing role-based access control and secure REST APIs. Designed relational schemas for user and role management, applied password hashing for security, and enforced authorization using Spring Security.”
+
 **Project settings**
   Project: Maven
   Language: Java
@@ -9,6 +10,7 @@ A Java-based backend system that handles secure user authentication, role-based 
   Artifact: authsystem
   Packaging: Jar
   Java: 17 
+  
 **Dependencies:**
   Spring Web
   Spring Data JPA
