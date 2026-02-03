@@ -11,6 +11,7 @@ import com.anamika.authsystem.security.JwtUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -54,13 +55,20 @@ public class AuthService {
     }
 
     public String login(LoginRequest request) {
+
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+                .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+            throw new RuntimeException("Invalid username or password");
         }
 
-        return jwtUtil.generateToken(user.getUsername());
+        // ✅ Extract role names
+        List<String> roles = user.getRoles()
+                .stream()
+                .map(Role::getName)
+                .toList();
+
+        return jwtUtil.generateToken(user.getUsername(), roles);
     }
 }
