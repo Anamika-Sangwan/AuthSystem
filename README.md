@@ -40,15 +40,15 @@ Java
 
 🔐 API Endpoints
 Auth
-Method Endpoint Access
-POST /api/auth/register Public
-POST /api/auth/login Public
+Method	Endpoint	 Access
+POST	/api/auth/register Public
+POST	/api/auth/login	 Public
 User
-Method Endpoint Access
-GET /api/user/profile USER, ADMIN
+Method	Endpoint	Access
+GET	/api/user/profile	USER, ADMIN
 Admin
-Method Endpoint Access
-GET /api/admin/dashboard ADMIN
+Method	Endpoint	Access
+GET	/api/admin/dashboard	ADMIN
 ▶️ How to Run
 
 Clone the repository
